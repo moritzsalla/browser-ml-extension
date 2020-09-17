@@ -1,1 +1,0 @@
-{"name":"Getting Started Example","version":"1.0","description":"Build an Extension!","background":{"scripts":["dist/background.js"],"persistent":false},"manifest_version":2}

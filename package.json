@@ -12,7 +12,6 @@
   "scripts": {
     "format": "prettier --write .",
     "clean": "rm -r dist/ .cache/",
-    "dev": "parcel src/index.html",
-    "build": "parcel build --no-content-hash src/*.html src/*.ts src/*.js src/*.webmanifest --out-dir dist/chrome/"
+    "build": "parcel build --no-content-hash src/*.html src/*.ts src/*.js --out-dir dist/chrome/ && cp src/manifest.json dist/chrome/manifest.json"
   }
 }
