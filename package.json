@@ -11,7 +11,8 @@
   },
   "scripts": {
     "format": "prettier --write .",
+    "clean": "rm -r dist/ .cache/",
     "dev": "parcel src/index.html",
-    "build": "parcel build --no-content-hash src/background.ts"
+    "build": "parcel build --no-content-hash src/*.html src/*.ts src/*.js src/*.webmanifest --out-dir dist/chrome/"
   }
 }
