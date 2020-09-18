@@ -1,12 +1,14 @@
 {
-  "name": "vanilla-typescript",
+  "name": "sentiment-analysis",
   "version": "1.0.0",
-  "description": "JavaScript and TypeScript example starter project",
+  "description": "A chrome extension that anayses a website's neutrality using the sentiment deep learning model",
   "scripts": {
     "clean": "rm -r dist/ .cache/ && prettier --write .",
     "build": "parcel build src/*.ts src/*.html src/images/*.png && cp src/manifest.json dist/manifest.json"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ml5": "^0.5.0"
+  },
   "devDependencies": {
     "@types/chrome": "^0.0.123",
     "parcel-bundler": "^1.6.1",

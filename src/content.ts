@@ -1,18 +1,37 @@
-console.log("browser extension is active");
+import * as ml5 from "ml5";
 
-chrome.runtime.sendMessage({ myQuestion: "Is it ON or OFF?" }, function (
-  response
-) {
-  console.log("Extension state is: " + response.state); // should be ON
-  if (response.state !== "ON") return;
+// collect data -----------------------------
 
-  const headings: any = document.getElementsByTagName("h1");
-  const subheadings: any = document.getElementsByTagName("h2");
+const paragraphs: NodeListOf<
+  HTMLParagraphElement
+> | null = document.querySelectorAll("p");
 
-  document.querySelector("body").style.background = "red";
-  document.querySelector("html").style.background = "red";
+let bin: string = "";
 
-  document.querySelectorAll("div").forEach((elem) => {
-    elem.style.background = "red";
+if (paragraphs && paragraphs.length > 0) {
+  paragraphs.forEach((paragraph) => {
+    bin += paragraph.textContent;
   });
-});
+}
+
+// run model -----------------------------
+
+const sentiment = ml5.sentiment("movieReviews", modelReady);
+
+function modelReady(): void {
+  const prediction: { score: number } = sentiment.predict(bin);
+
+  console.log(prediction.score);
+
+  if (prediction.score > 0.8) {
+    alert("Sentiment analysis: very positive");
+  } else if (prediction.score > 0.6) {
+    alert("Sentiment analysis: positive");
+  } else if (prediction.score > 0.4) {
+    alert("Sentiment analysis: neutral");
+  } else if (prediction.score > 0.2) {
+    alert("Sentiment analysis: negative");
+  } else {
+    alert("Sentiment analysis: Very negative");
+  }
+}

@@ -1,15 +1,11 @@
 {
-  "name": "Getting Started Example",
-  "version": "1.0.1",
-  "description": "Build an Extension!",
+  "name": "Sentiment Analysis",
+  "version": "1.0",
+  "description": "Analyse a website's sentiment using deep learning to find out it's neutrality.",
   "permissions": ["activeTab", "declarativeContent", "storage"],
   "content_scripts": [{ "matches": ["<all_urls>"], "js": ["content.js"] }],
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
   "page_action": {
-    "default_popup": "popup.html",
+    "default_title": "Sentiment Analysis",
     "default_icon": {
       "16": "images/favicon.png",
       "32": "images/favicon@2x.png",
