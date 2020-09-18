@@ -1,15 +1,11 @@
 console.log("browser extension is active");
 
-const headings: HTMLCollectionOf<
-  HTMLHeadingElement
-> | null = document.getElementsByTagName("h1");
+const headings: any = document.getElementsByTagName("h1");
+const subheadings: any = document.getElementsByTagName("h2");
 
-const subheadings = document.getElementsByTagName("h2");
+document.querySelector("body").style.background = "red";
+document.querySelector("html").style.background = "red";
 
-for (let item of headings) {
-  console.log(item);
-}
-
-for (let item of subheadings) {
-  console.log(item);
-}
+document.querySelectorAll("div").forEach((elem) => {
+  elem.style.background = "red";
+});
