@@ -2,7 +2,7 @@
   "name": "Sentiment Analysis",
   "version": "1.0",
   "description": "Analyse a website's sentiment using deep learning to find out it's neutrality.",
-  "permissions": ["activeTab", "declarativeContent"],
+  "permissions": ["declarativeContent"],
   "content_scripts": [{ "matches": ["<all_urls>"], "js": ["content.js"] }],
   "page_action": {
     "default_title": "Sentiment Analysis",
