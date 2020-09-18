@@ -4,10 +4,11 @@
   "description": "JavaScript and TypeScript example starter project",
   "scripts": {
     "clean": "rm -r dist/ .cache/ && prettier --write .",
-    "build": "parcel build src/*.ts src/images/*.png && cp src/manifest.json dist/manifest.json"
+    "build": "parcel build src/*.ts src/*.html src/images/*.png && cp src/manifest.json dist/manifest.json"
   },
   "dependencies": {},
   "devDependencies": {
+    "@types/chrome": "^0.0.123",
     "parcel-bundler": "^1.6.1",
     "prettier": "^2.1.2",
     "typescript": "^4.0.2"
