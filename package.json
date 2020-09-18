@@ -1,17 +1,15 @@
 {
-  "name": "chrome-extension-ml",
+  "name": "vanilla-typescript",
   "version": "1.0.0",
-  "main": "index.js",
-  "author": "Moritz Salla",
-  "license": "MIT",
-  "devDependencies": {
-    "parcel-bundler": "^1.12.4",
-    "parcel-plugin-prettier": "^0.2.1",
-    "prettier": "2.1.2",
-    "typescript": "^4.0.2"
-  },
+  "description": "JavaScript and TypeScript example starter project",
   "scripts": {
     "clean": "rm -r dist/ .cache/ && prettier --write .",
-    "build": "parcel build --no-content-hash src/*.html src/images/*.png src/*.ts src/*.js --out-dir dist/chrome/ && cp src/manifest.json dist/chrome/manifest.json"
+    "build": "parcel build src/*.ts src/images/*.png && cp src/manifest.json dist/manifest.json"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "parcel-bundler": "^1.6.1",
+    "prettier": "^2.1.2",
+    "typescript": "^4.0.2"
   }
 }

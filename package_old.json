@@ -1,0 +1,18 @@
+{
+  "name": "chrome-extension-ml",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Moritz Salla",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-prettier": "^0.2.1",
+    "prettier": "2.1.2",
+    "typescript": "^4.0.2"
+  },
+  "scripts": {
+    "clean": "rm -r dist/ .cache/ && prettier --write .",
+    "build": "parcel build --no-content-hash src/*.ts src/images/*.png --out-dir dist/ && cp src/manifest.json dist/manifest.json"
+  },
+  "dependencies": {}
+}
