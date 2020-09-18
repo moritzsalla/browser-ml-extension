@@ -1,16 +1,26 @@
 {
   "name": "sentiment-analysis",
-  "version": "1.0.0",
+  "version": "0.0.1",
+  "license": "MIT",
   "description": "A chrome extension that anayses a website's neutrality using the sentiment deep learning model",
   "scripts": {
     "clean": "rm -r dist/ .cache/ && prettier --write .",
-    "build": "parcel build src/*.ts src/*.html src/images/*.png && cp src/manifest.json dist/manifest.json"
+    "build": "parcel build src/*.ts src/*.html src/*.tsx src/images/*.png && cp src/manifest.json dist/manifest.json"
   },
   "dependencies": {
-    "ml5": "^0.5.0"
+    "bootstrap": "^4.5.2",
+    "ml5": "^0.5.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
+    "react-spring": "^8.0.27",
+    "reset-css": "^5.0.1"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.123",
+    "@types/node": "^14.11.1",
+    "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
     "parcel-bundler": "^1.6.1",
     "prettier": "^2.1.2",
     "typescript": "^4.0.2"
