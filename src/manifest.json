@@ -2,9 +2,14 @@
   "name": "Sentiment Analysis",
   "version": "1.0",
   "description": "Analyse a website's sentiment using deep learning to find out it's neutrality.",
-  "permissions": ["declarativeContent"],
+  "permissions": ["declarativeContent", "storage", "activeTab"],
   "content_scripts": [{ "matches": ["<all_urls>"], "js": ["content.js"] }],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
   "page_action": {
+    "default_popup": "popup/index.html",
     "default_title": "Sentiment Analysis",
     "default_icon": {
       "16": "images/favicon.png",
