@@ -5,7 +5,7 @@
   "description": "A chrome extension that anayses a website's neutrality using the sentiment deep learning model",
   "scripts": {
     "clean": "rm -r dist/ .cache/ && prettier --write .",
-    "build": "parcel build src/*.ts src/*.html src/*.tsx src/images/*.png src/popup/*.tsx src/popup/*.html && cp src/manifest.json dist/manifest.json",
+    "build": "parcel build src/*.ts src/*.html src/*.tsx src/images/*.png src/popup/*.tsx src/popup/*.css src/popup/*.html && cp src/manifest.json dist/manifest.json",
     "post-build": "zip -r -X compressed.zip dist/"
   },
   "dependencies": {

@@ -3,7 +3,6 @@ import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
 import { useSpring, animated, config } from "react-spring";
 import styled from "styled-components";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const Wrapper = styled(animated.div)`
   transform-origin: 50% 100%;
@@ -47,7 +46,7 @@ export default function App() {
   });
 
   return (
-    <Card style={{ width: "18rem" }} className="m-3 shadow border-0">
+    <Card style={{ width: "18rem" }} className="m-3 shadow border-0 rounded">
       <div className="display-1 mx-auto">
         <Needle value={score} />
       </div>
@@ -67,7 +66,7 @@ export default function App() {
           </Badge>
           .
         </Card.Text>
-        <Card.Link href="https://moritzsalla.info">Learn More</Card.Link>
+        {/* <Card.Link href="https://moritzsalla.info">Learn More</Card.Link> */}
       </Card.Body>
     </Card>
   );
