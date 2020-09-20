@@ -1,3 +1,5 @@
+![Logo](./src/images/store_icon.png)
+
 # Sentiment Chrome Extension
 
 Crawls the page for paragraph tags and analyses them for sentiment. Once this is completed, a React modal displays the outcome. Ongoing project.
