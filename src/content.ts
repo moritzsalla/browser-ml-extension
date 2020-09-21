@@ -14,6 +14,8 @@ if (paragraphs && paragraphs.length > 0) {
   });
 }
 
+console.log(bin);
+
 // run model -----------------------------
 
 const sentiment = ml5.sentiment("movieReviews", modelReady);
