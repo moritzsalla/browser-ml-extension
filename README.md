@@ -2,6 +2,8 @@
 
 # Sentiment Chrome Extension
 
+![](./banner.jpg)
+
 Crawls the page for paragraph tags and analyses them for sentiment. Once this is completed, a React modal displays the outcome. Ongoing project.
 
 Run `yarn build` to bundle files into a chrome build  
