@@ -1,7 +1,6 @@
 import * as ml5 from "ml5";
 
 // collect data -----------------------------
-
 const paragraphs: NodeListOf<
   HTMLParagraphElement
 > | null = document.querySelectorAll("p");
@@ -17,7 +16,6 @@ if (paragraphs && paragraphs.length > 0) {
 console.log(bin);
 
 // run model -----------------------------
-
 const sentiment = ml5.sentiment("movieReviews", modelReady);
 
 function modelReady() {
@@ -37,3 +35,17 @@ function createPrediction(data: string): { score: number } {
   const prediction = sentiment.predict(data);
   return prediction;
 }
+
+// send to sense hat -----------------------------
+let color = {
+  r: 120,
+  g: 100,
+  b: 200,
+};
+
+const http = new XMLHttpRequest();
+http.open(
+  "GET",
+  `http://192.168.0.22/color?r=${color.r}&g=${color.g}&b=${color.b}`
+);
+http.send();
