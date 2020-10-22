@@ -37,15 +37,15 @@ function createPrediction(data: string): { score: number } {
 }
 
 // send to sense hat -----------------------------
-let color = {
-  r: 120,
-  g: 100,
-  b: 200,
-};
+// let color = {
+//   r: 120,
+//   g: 100,
+//   b: 200,
+// };
 
-const http = new XMLHttpRequest();
-http.open(
-  "GET",
-  `http://192.168.0.22/color?r=${color.r}&g=${color.g}&b=${color.b}`
-);
-http.send();
+// const http = new XMLHttpRequest();
+// http.open(
+//   "GET",
+//   `http://192.168.0.22/color?r=${color.r}&g=${color.g}&b=${color.b}`
+// );
+// http.send();
