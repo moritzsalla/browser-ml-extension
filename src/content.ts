@@ -2,7 +2,7 @@ import * as ml5 from "ml5";
 import SenseHat from "./sensehat";
 
 // initiate new sensehat object
-const Sense = new SenseHat("192.168.0.24");
+// const Sense = new SenseHat("192.168.0.24");
 
 // ----------- collect data -----------
 
@@ -38,10 +38,10 @@ function modelReady() {
   );
 
   // set sense hat
-  Sense.setColor(255, 0, 0);
-  Sense.clear();
-  Sense.test();
-  Sense.setColor(255, 0, 0);
+  // Sense.setColor(255, 0, 0);
+  // Sense.clear();
+  // Sense.test();
+  // Sense.setColor(255, 0, 0);
 }
 
 function createPrediction(data: string): { score: number } {

@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -r dist/ .cache/",
     "format": "prettier --write .",
-    "build": "parcel build src/*.ts src/*.html src/*.tsx src/images/*.png src/popup/*.tsx src/popup/*.css src/popup/*.html && cp src/manifest.json dist/manifest.json",
+    "build": "parcel build src/*.ts src/*.html src/*.tsx src/*.js src/images/*.png src/popup/*.tsx src/popup/*.css src/popup/*.html && cp src/manifest.json dist/manifest.json",
     "post-build": "zip -r -X compressed.zip dist/"
   },
   "dependencies": {
