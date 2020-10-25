@@ -1,6 +1,11 @@
 import * as ml5 from "ml5";
+import SenseHat from "./sensehat";
 
-// collect data -----------------------------
+// initiate new sensehat object
+const Sense = new SenseHat("192.168.0.24");
+
+// ----------- collect data -----------
+
 const paragraphs: NodeListOf<
   HTMLParagraphElement
 > | null = document.querySelectorAll("p");
@@ -15,37 +20,31 @@ if (paragraphs && paragraphs.length > 0) {
 
 console.log(bin);
 
-// run model -----------------------------
+// ----------- run model -----------
+
+// fetch ml5 model
 const sentiment = ml5.sentiment("movieReviews", modelReady);
 
 function modelReady() {
   console.log("model ready");
+
   const prediction = createPrediction(bin);
-
   let { score } = prediction;
-  score = Math.round(score * 100) / 100;
+  score = Math.round(score * 100) / 100; // round to 2 decimal places
 
-  // set storage
+  // set storage for popup
   chrome.storage.local.set({ key: score }, () =>
     console.log(`storage has been set to ${score}`)
   );
+
+  // set sense hat
+  Sense.setColor(255, 0, 0);
+  Sense.clear();
+  Sense.test();
+  Sense.setColor(255, 0, 0);
 }
 
 function createPrediction(data: string): { score: number } {
   const prediction = sentiment.predict(data);
   return prediction;
 }
-
-// send to sense hat -----------------------------
-// let color = {
-//   r: 120,
-//   g: 100,
-//   b: 200,
-// };
-
-// const http = new XMLHttpRequest();
-// http.open(
-//   "GET",
-//   `http://192.168.0.22/color?r=${color.r}&g=${color.g}&b=${color.b}`
-// );
-// http.send();
