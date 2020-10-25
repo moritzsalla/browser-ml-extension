@@ -2,7 +2,10 @@ import * as ml5 from "ml5";
 import SenseHat from "./sensehat";
 
 // initiate new sensehat object
-// const Sense = new SenseHat("192.168.0.24");
+const Sense = new SenseHat("192.168.0.24");
+
+// set sense hat
+Sense.test();
 
 // ----------- collect data -----------
 
@@ -17,8 +20,6 @@ if (paragraphs && paragraphs.length > 0) {
     bin += paragraph.textContent;
   });
 }
-
-console.log(bin);
 
 // ----------- run model -----------
 
@@ -36,12 +37,6 @@ function modelReady() {
   chrome.storage.local.set({ key: score }, () =>
     console.log(`storage has been set to ${score}`)
   );
-
-  // set sense hat
-  // Sense.setColor(255, 0, 0);
-  // Sense.clear();
-  // Sense.test();
-  // Sense.setColor(255, 0, 0);
 }
 
 function createPrediction(data: string): { score: number } {
