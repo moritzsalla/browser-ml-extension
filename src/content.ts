@@ -2,7 +2,7 @@ import * as ml5 from "ml5";
 import SenseHat from "./sensehat";
 
 // initiate new sensehat object
-const Sense = new SenseHat("192.168.0.24");
+const Sense = new SenseHat("192.168.0.24", true);
 
 // set sense hat
 Sense.test();
