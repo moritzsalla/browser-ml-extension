@@ -11,6 +11,10 @@ Run `yarn clean` to format using prettify and remove cache + dist folders
 
 The chrome store requires the `dist` folder to be packaged before upload.
 
+# Certificate Issues on Chrome
+
+Chrome doesn't accept self-signed certificate issues. Read more [here](https://stackoverflow.com/a/58957322/10653440). To whitelist `https://192.168.0.24/`, type `thisisunsafe` when faced with the error screen.
+
 ### Folder Structure
 
 ```
