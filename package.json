@@ -6,14 +6,16 @@
   "scripts": {
     "clean": "rm -r dist/ .cache/",
     "format": "prettier --write .",
-    "build": "parcel build src/*.ts src/*.html src/*.tsx src/*.js src/images/*.png src/popup/*.tsx src/popup/*.css src/popup/*.html && cp src/manifest.json dist/manifest.json",
+    "build": "parcel build src/**/*.js src/**/*.ts src/**/*.html src/**/*.tsx src/**/*.css src/images/*.png && cp src/manifest.json dist/manifest.json",
     "post-build": "zip -r -X compressed.zip dist/"
   },
   "dependencies": {
+    "@types/p5": "^0.9.1",
     "bootstrap": "^4.5.2",
     "firebase": "^7.21.1",
     "ml5": "^0.5.0",
     "normalize.css": "^8.0.1",
+    "p5": "^1.1.9",
     "react": "^16.13.1",
     "react-bootstrap": "^1.3.0",
     "react-dom": "^16.13.1",
@@ -27,6 +29,7 @@
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "@types/styled-components": "^5.1.3",
+    "marked": "^1.2.2",
     "parcel-bundler": "^1.6.1",
     "prettier": "^2.1.2",
     "typescript": "^4.0.2"
