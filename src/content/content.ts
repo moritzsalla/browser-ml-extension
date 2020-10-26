@@ -10,11 +10,6 @@ const sentiment = ml5.sentiment("movieReviews", () => {
   let { score } = prediction;
   score = Math.round(score * 100) / 100; // round to 2 decimal places
 
-  // init anim loop and do smth with sensehat
-  setInterval(function () {
-    console.log("test");
-  }, 400);
-
   // set storage for popup
   chrome.storage.local.set({ key: score }, () =>
     console.log(`storage has been set to ${score}`)
