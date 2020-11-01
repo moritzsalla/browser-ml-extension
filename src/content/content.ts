@@ -16,12 +16,8 @@ const sentiment = ml5.sentiment("movieReviews", () => {
 
   // add to chrome storage
   chrome.storage.local.get(["key"], function (result) {
-    let storage;
-
-    if (Array.isArray(result.key)) {
-      storage = result.key;
-      storage.push(score);
-      chrome.storage.local.set({ key: storage });
+    if (result.key) {
+      chrome.storage.local.set({ key: result.key.push(score) });
     } else {
       chrome.storage.local.set({ key: [score] });
     }
