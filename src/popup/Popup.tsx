@@ -18,7 +18,7 @@ const Needle = ({ value }: any) => {
     from: { transform: `rotate(${origin}deg)` },
     to: { transform: `rotate(${origin + 90 * value * 2}deg)` },
     reset: true,
-    config: config.wobbly,
+    config: config.stiff,
   });
 
   return <Wrapper style={anim}>|</Wrapper>;
@@ -53,15 +53,12 @@ export default function App() {
 
   if (score > 0) {
     return (
-      <Card style={{ width: "18rem" }} className="m-2 shadow border-0 rounded">
+      <Card style={{ width: "18rem" }} className="m-1 shadow border-0 rounded">
         <div className="display-1 mx-auto">
           <Needle value={score} />
         </div>
         <Card.Body>
           <Card.Title>Sentiment Analysis</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            Check a website's sentiment using deep learning
-          </Card.Subtitle>
           <Card.Text>
             This website has a score of{" "}
             <Badge pill variant="primary">
@@ -79,7 +76,7 @@ export default function App() {
     );
   } else {
     return (
-      <Card style={{ width: "18rem" }} className="m-2 shadow border-0 rounded">
+      <Card style={{ width: "18rem" }} className="m-1 shadow border-0 rounded">
         <Card.Body>
           <Card.Title>Sentiment Analysis</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
