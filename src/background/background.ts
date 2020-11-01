@@ -1,4 +1,3 @@
-import "./firebase-client.ts";
 import SenseHat from "../background/sensehat";
 
 const Sense = new SenseHat("192.168.0.24", true);
