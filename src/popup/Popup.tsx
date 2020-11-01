@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
 import { useSpring, animated, config } from "react-spring";
 import styled from "styled-components";
+import ResetButton from "./ResetButton";
 
 const Wrapper = styled(animated.div)`
   transform-origin: 50% 100%;
@@ -39,9 +40,9 @@ export default function App() {
   const [score, setScore] = React.useState(0);
 
   React.useEffect(() => {
-    chrome.storage.local.get(["key"], (result) => {
-      if (result.key.constructor === Array) {
-        const x = result.key[result.key.length - 1];
+    chrome.storage.local.get(["score"], (result) => {
+      if (result.score.constructor === Array) {
+        const x = result.score[result.score.length - 1];
         console.log(`${x} was received by popup`);
         setScore(x);
       } else {
@@ -49,13 +50,6 @@ export default function App() {
       }
     });
   });
-
-  function resetChromeStorage() {
-    const value = [];
-    chrome.storage.local.set({ key: value }, function () {
-      console.log("Popup reset storage to " + value);
-    });
-  }
 
   if (score > 0) {
     return (
@@ -79,12 +73,7 @@ export default function App() {
             </Badge>
             .
           </Card.Text>
-          <button
-            onClick={() => resetChromeStorage()}
-            className="btn btn-secondary"
-          >
-            Reset Storage
-          </button>
+          <ResetButton />
         </Card.Body>
       </Card>
     );
@@ -100,6 +89,7 @@ export default function App() {
             Unfortunately this site's sentiment could'nt be determined. This is
             likely to be due to lack of semantic HTML.
           </Card.Text>
+          <ResetButton />
         </Card.Body>
       </Card>
     );

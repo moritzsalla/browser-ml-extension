@@ -11,20 +11,25 @@ function createPrediction(data: string): { score: number } {
 const sentiment = ml5.sentiment("movieReviews", () => {
   // create ml prediction
   const prediction = createPrediction(result);
-  let { score } = prediction;
-  score = Math.round(score * 100) / 100; // round to 2 decimal places
+  let sentiment = prediction.score;
+  sentiment = Math.round(sentiment * 100) / 100; // round to 2 decimal places
 
-  // add to chrome storage
-  chrome.storage.local.get(["key"], function (result) {
-    if (result.key) {
-      chrome.storage.local.set({ key: result.key.push(score) });
+  console.log("score: " + sentiment);
+
+  // push to chrome storage
+  chrome.storage.local.get(["score"], function (result) {
+    if (Array.isArray(result.score)) {
+      let val = result.score;
+      val.push(sentiment);
+      chrome.storage.local.set({ score: val });
     } else {
-      chrome.storage.local.set({ key: [score] });
+      let val = [result.score];
+      chrome.storage.local.set({ score: val });
     }
   });
 
   // check storage for debugging
-  chrome.storage.local.get(["key"], function (result) {
-    console.log(result.key);
+  chrome.storage.local.get(["score"], function (result) {
+    console.log(result.score);
   });
 });

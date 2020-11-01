@@ -1,23 +1,23 @@
 class DataBase {
-  key: string;
+  score: string;
   localStorage: Storage;
   storage: number[];
 
-  constructor(key: string) {
-    this.key = key;
+  constructor(score: string) {
+    this.score = score;
     this.localStorage = window.localStorage;
   }
 
   set(val: number[]): void {
-    const key = this.key;
-    chrome.storage.local.set({ key: val }, function () {
+    const score = this.score;
+    chrome.storage.local.set({ score: val }, function () {
       console.log("Value is set to " + val);
     });
   }
 
   get() {
-    chrome.storage.local.get(["key"], function (result) {
-      console.log("Value currently is " + result.key);
+    chrome.storage.local.get(["score"], function (result) {
+      console.log("Value currently is " + result.score);
     });
   }
 
