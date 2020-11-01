@@ -39,15 +39,27 @@ export default function App() {
   const [score, setScore] = React.useState(0);
 
   React.useEffect(() => {
-    chrome.storage.local.get(["key"], (result: any) => {
-      console.log(`${result.key} was received by popup`);
-      setScore(result.key);
+    chrome.storage.local.get(["key"], (result) => {
+      if (result.key.constructor === Array) {
+        const x = result.key[result.key.length - 1];
+        console.log(`${x} was received by popup`);
+        setScore(x);
+      } else {
+        console.log("no data received by popup");
+      }
     });
   });
 
+  function resetChromeStorage() {
+    const value = [];
+    chrome.storage.local.set({ key: value }, function () {
+      console.log("Popup reset storage to " + value);
+    });
+  }
+
   if (score > 0) {
     return (
-      <Card style={{ width: "18rem" }} className="m-3 shadow border-0 rounded">
+      <Card style={{ width: "18rem" }} className="m-2 shadow border-0 rounded">
         <div className="display-1 mx-auto">
           <Needle value={score} />
         </div>
@@ -67,12 +79,18 @@ export default function App() {
             </Badge>
             .
           </Card.Text>
+          <button
+            onClick={() => resetChromeStorage()}
+            className="btn btn-secondary"
+          >
+            Reset Storage
+          </button>
         </Card.Body>
       </Card>
     );
   } else {
     return (
-      <Card style={{ width: "18rem" }} className="m-3 shadow border-0 rounded">
+      <Card style={{ width: "18rem" }} className="m-2 shadow border-0 rounded">
         <Card.Body>
           <Card.Title>Sentiment Analysis</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
