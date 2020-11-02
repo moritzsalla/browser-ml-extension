@@ -22,7 +22,7 @@ const Sense = new SenseHat("192.168.0.24", true);
 
 // init animation loop and do smth with sensehat
 
-let x = 1;
+let c = 1;
 let easing = 0.1;
 
 setInterval(function () {
@@ -30,21 +30,23 @@ setInterval(function () {
     if (result.score.constructor === Array) {
       let val = result.score[result.score.length - 1];
 
-      // ease
-      let dist = val - x;
-      x += dist * easing;
+      let dist = val - c;
+      c += dist * easing;
 
-      // map to rgb range
-      let normX = Math.round(map(x, 0, 1, 0, 255));
+      const color = {
+        r: Math.round(map(c, 0, 1, 0, 255)),
+        g: 0,
+        b: 255,
+      };
 
       console.log({
-        val: val,
-        x: x,
-        normalizedX: normX,
+        incoming: val,
+        current: c,
+        output: color,
       });
 
       try {
-        Sense.setColor(normX, 0, normX);
+        Sense.setColor(color.r, color.g, color.b);
       } catch (err) {
         console.error(err);
         console.error(
