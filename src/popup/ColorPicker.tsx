@@ -1,35 +1,50 @@
 import * as React from "react";
 
-const ColorPicker = () => {
-  const [max, setMax] = React.useState("#FF0000");
-  const [min, setMin] = React.useState("#00FF00");
+function rgbToHex(r: number, g: number, b: number): string {
+  return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
 
+function hexToRgb(hex: string) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
+}
+
+const ColorPicker = () => {
+  // local color state
+  const [max, setMax] = React.useState("#0033ff");
+  const [min, setMin] = React.useState("#0033ff");
+
+  // global color state
   const [global, setGlobal] = React.useState({
     min: { r: 0, g: 0, b: 0 },
     max: { r: 0, g: 0, b: 0 },
   });
 
-  function hexToRgb(hex: string) {
-    // hexToRgb("#0033ff").g)
-    // hexToRgb(max).g
+  // update with  curr value from state
+  React.useEffect(() => {
+    chrome.storage.local.get(["color"], function (result) {
+      const { min, max } = result.color;
 
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result
-      ? {
-          r: parseInt(result[1], 16),
-          g: parseInt(result[2], 16),
-          b: parseInt(result[3], 16),
-        }
-      : null;
-  }
+      const a = rgbToHex(max.r, max.g, max.b);
+      const b = rgbToHex(min.r, min.g, min.b);
+      setMax(a);
+      setMin(b);
+    });
+  }, []);
 
   function updateGlobal() {
     setGlobal({
       min: { r: hexToRgb(min).r, g: hexToRgb(min).g, b: hexToRgb(min).b },
       max: { r: hexToRgb(max).r, g: hexToRgb(max).g, b: hexToRgb(max).b },
     });
-
-    // set global to chrome storage here
+    chrome.storage.local.set({ color: global });
+    console.log({ max: global.max }, { min: global.min });
   }
 
   return (
@@ -57,7 +72,7 @@ const ColorPicker = () => {
           value={min}
           onChange={(event) => {
             setMin(event.target.value);
-            setGlobal();
+            updateGlobal();
           }}
           className="mr-2"
         />

@@ -45,10 +45,7 @@ export default function App() {
     chrome.storage.local.get(["score"], (result) => {
       if (result.score.constructor === Array) {
         const x = result.score[result.score.length - 1];
-        console.log(`${x} was received by popup`);
         setScore(x);
-      } else {
-        console.log("no data received by popup");
       }
     });
   });

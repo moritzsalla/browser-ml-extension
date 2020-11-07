@@ -20,11 +20,27 @@ chrome.runtime.onInstalled.addListener(function () {
 
 const Sense = new SenseHat("192.168.0.24", true);
 
-// init animation loop and do smth with sensehat
+/*
+********
+init animation loop
+and do smth with sensehat
+********
+*/
 
 let c = 1;
 let easing = 0.1;
 
+let col = {
+  min: { r: 255, g: 0, b: 0 },
+  max: { r: 0, g: 255, b: 0 },
+};
+
+chrome.storage.local.set({ color: col });
+chrome.storage.onChanged.addListener(function (namespace) {
+  if (namespace.color) col = namespace.color.newValue;
+});
+
+// create animation loop to animate sensehat
 setInterval(function () {
   chrome.storage.local.get(["score"], (result) => {
     if (result.score.constructor === Array) {
@@ -33,29 +49,23 @@ setInterval(function () {
       let dist = val - c;
       c += dist * easing;
 
-      const color = {
-        r: Math.round(map(c, 0, 1, 0, 255)),
-        g: 0,
-        b: 255,
-      };
+      const { min, max } = col;
 
-      console.log({
-        incoming: val,
-        current: c,
-        output: color,
-      });
+      const outR = Math.round(map(c, 0, 1, min.r, max.r));
+      const outG = Math.round(map(c, 0, 1, min.g, max.g));
+      const outB = Math.round(map(c, 0, 1, min.b, max.b));
 
-      try {
-        Sense.setColor(color.r, color.g, color.b);
-      } catch (err) {
-        console.error(err);
-        console.error(
-          "Make sure you are sending integers not floats, in a range between 0 and 255"
-        );
-      }
+      // send to sensehat
+      Sense.setColor(outR, outG, outB);
     }
   });
 }, 400);
+
+/*
+********
+helper functions
+********
+*/
 
 function map(
   value: number,
