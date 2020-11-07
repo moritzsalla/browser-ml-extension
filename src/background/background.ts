@@ -30,6 +30,10 @@ and do smth with sensehat
 let c = 1;
 let easing = 0.1;
 
+let oldOutR = 0;
+let oldOutG = 0;
+let oldOutB = 0;
+
 let col = {
   min: { r: 255, g: 0, b: 0 },
   max: { r: 0, g: 255, b: 0 },
@@ -55,8 +59,20 @@ setInterval(function () {
       const outG = Math.round(map(c, 0, 1, min.g, max.g));
       const outB = Math.round(map(c, 0, 1, min.b, max.b));
 
-      // send to sensehat
-      Sense.setColor(outR, outG, outB);
+      // send to sensehat only when vals update
+      if (oldOutR !== outR && oldOutG !== outG && oldOutB !== outB) {
+        // console.log(outR, outG, outB);
+        Sense.setColor(outR, outG, outB);
+      }
+
+      oldOutR = outR;
+      oldOutG = outR;
+      oldOutB = outR;
+
+      // tests
+      colorTest(outR);
+      colorTest(outG);
+      colorTest(outB);
     }
   });
 }, 400);
@@ -75,4 +91,15 @@ function map(
   stop2: number
 ): number {
   return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
+}
+
+function colorTest(c: number): void {
+  if (isNaN(c)) {
+    console.error(c + " is not a number");
+    return;
+  }
+  if (c < 0 || c > 255) {
+    console.error(c + " not in range 0–255");
+    return;
+  }
 }

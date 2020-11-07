@@ -2,10 +2,17 @@ import * as React from "react";
 
 const ResetButton = () => {
   function resetChromeStorage() {
-    const value = [];
-    chrome.storage.local.set({ score: value }, function () {
-      console.log("Popup reset storage to " + value);
+    let newScore;
+
+    chrome.storage.local.get(["score"], (result) => {
+      if (newScore.length > 1) newScore = result.splice(1);
     });
+
+    chrome.storage.local.set({
+      score: newScore,
+    });
+
+    console.info("Reset sentiment storage");
   }
 
   return (
