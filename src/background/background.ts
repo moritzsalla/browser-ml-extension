@@ -61,7 +61,7 @@ setInterval(function () {
 
       // send to sensehat only when vals update
       if (oldOutR !== outR && oldOutG !== outG && oldOutB !== outB) {
-        // console.log(outR, outG, outB);
+        console.log(outR, outG, outB);
         Sense.setColor(outR, outG, outB);
       }
 
