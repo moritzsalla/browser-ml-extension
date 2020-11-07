@@ -1,8 +1,10 @@
 import * as React from "react";
-import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
-import { useSpring, animated, config } from "react-spring";
+import Card from "react-bootstrap/Card";
+import { animated, config, useSpring } from "react-spring";
 import styled from "styled-components";
+import ColorPicker from "./ColorPicker";
+import Fallback from "./Fallback";
 import ResetButton from "./ResetButton";
 
 const Wrapper = styled(animated.div)`
@@ -70,25 +72,14 @@ export default function App() {
             </Badge>
             .
           </Card.Text>
+          <hr />
+          <ColorPicker />
+          <hr />
           <ResetButton />
         </Card.Body>
       </Card>
     );
   } else {
-    return (
-      <Card style={{ width: "18rem" }} className="m-1 shadow border-0 rounded">
-        <Card.Body>
-          <Card.Title>Sentiment Analysis</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            Check a website's sentiment using deep learning
-          </Card.Subtitle>
-          <Card.Text>
-            Unfortunately this site's sentiment could'nt be determined. This is
-            likely to be due to lack of semantic HTML.
-          </Card.Text>
-          <ResetButton />
-        </Card.Body>
-      </Card>
-    );
+    return <Fallback />;
   }
 }
