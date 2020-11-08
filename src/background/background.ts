@@ -28,7 +28,7 @@ and do smth with sensehat
 */
 
 let c = 1;
-let easing = 0.1;
+let easing = 0.005;
 
 let oldOutR = 0;
 let oldOutG = 0;
@@ -55,9 +55,14 @@ setInterval(function () {
 
       const { min, max } = col;
 
-      const outR = Math.round(map(c, 0, 1, min.r, max.r));
-      const outG = Math.round(map(c, 0, 1, min.g, max.g));
-      const outB = Math.round(map(c, 0, 1, min.b, max.b));
+      let outR = Math.round(map(c, 0, 1, min.r, max.r));
+      let outG = Math.round(map(c, 0, 1, min.g, max.g));
+      let outB = Math.round(map(c, 0, 1, min.b, max.b));
+
+      // make sure val falls into sensehats range
+      if (outR < 8) outR = 8;
+      if (outG < 8) outG = 8;
+      if (outB < 8) outB = 8;
 
       // send to sensehat only when vals update
       if (oldOutR !== outR && oldOutG !== outG && oldOutB !== outB) {
@@ -75,7 +80,7 @@ setInterval(function () {
       colorTest(outB);
     }
   });
-}, 400);
+}, 500);
 
 /*
 ********
