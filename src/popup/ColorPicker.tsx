@@ -48,35 +48,36 @@ const ColorPicker = () => {
   }
 
   return (
-    <div className="mt-3">
-      <h6>Colors</h6>
+    <div className="text-center">
       <p>Set your preferred color range</p>
-      <div>
-        <input
-          type="color"
-          name="colorHigh"
-          value={max}
-          onChange={(event) => {
-            setMax(event.target.value);
-            updateGlobal();
-          }}
-          className="mr-2"
-        />
-        <label for="maxColor">Healthy</label>
-      </div>
+      <div className="d-flex justify-content-around">
+        <div>
+          <input
+            type="color"
+            name="colorHigh"
+            value={max}
+            onChange={(event) => {
+              setMax(event.target.value);
+              updateGlobal();
+            }}
+          />
+          <br />
+          <label for="maxColor">Healthy</label>
+        </div>
 
-      <div>
-        <input
-          type="color"
-          name="colorLow"
-          value={min}
-          onChange={(event) => {
-            setMin(event.target.value);
-            updateGlobal();
-          }}
-          className="mr-2"
-        />
-        <label for="minColor">Unhealthy</label>
+        <div>
+          <input
+            type="color"
+            name="colorLow"
+            value={min}
+            onChange={(event) => {
+              setMin(event.target.value);
+              updateGlobal();
+            }}
+          />
+          <br />
+          <label for="minColor">Unhealthy</label>
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,18 @@
 import * as React from "react";
+import styled from "styled-components";
+
+const Button = styled.button`
+  margin: 0 auto;
+  width: 100%;
+  background: none;
+  color: #033579;
+  border: none;
+
+  &:hover {
+    background: 0;
+    color: #033579;
+  }
+`;
 
 const ResetButton = () => {
   function resetChromeStorage() {
@@ -16,9 +30,17 @@ const ResetButton = () => {
   }
 
   return (
-    <button onClick={() => resetChromeStorage()} className="btn btn-secondary">
-      Reset
-    </button>
+    <div>
+      <p className="text-center">
+        All data is stored on device. You can reset it below.
+      </p>
+      <Button
+        onClick={() => resetChromeStorage()}
+        className="btn btn-secondary"
+      >
+        Reset Data
+      </Button>
+    </div>
   );
 };
 
