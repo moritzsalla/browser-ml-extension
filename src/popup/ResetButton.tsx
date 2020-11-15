@@ -7,10 +7,11 @@ const Button = styled.button`
   background: none;
   color: #033579;
   border: none;
+  padding: 0.2rem 0.5rem;
 
   &:hover {
-    background: 0;
-    color: #033579;
+    background: #033579;
+    color: white;
   }
 `;
 
@@ -34,12 +35,14 @@ const ResetButton = () => {
       <p className="text-center">
         All data is stored on device. You can reset it below.
       </p>
-      <Button
-        onClick={() => resetChromeStorage()}
-        className="btn btn-secondary"
-      >
-        Reset Data
-      </Button>
+      <div className="d-flex justify-content-center align-items-center w-100">
+        <Button
+          onClick={() => resetChromeStorage()}
+          className="btn btn-secondary"
+        >
+          Reset Data
+        </Button>
+      </div>
     </div>
   );
 };

@@ -21,7 +21,7 @@ const Result = ({ score }: { score: number }) => (
       <Emotion value={score} />.
     </h2>
 
-    <h1 className="text-center">
+    <h1 className="text-center py-2">
       Sentiment-
       <br />
       Analysis
@@ -30,6 +30,7 @@ const Result = ({ score }: { score: number }) => (
     <hr />
     <ColorPicker />
     <hr />
+
     <ResetButton />
   </>
 );

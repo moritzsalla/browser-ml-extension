@@ -2,12 +2,17 @@ import * as React from "react";
 import Card from "react-bootstrap/Card";
 import { animated, config, useSpring } from "react-spring";
 import styled from "styled-components";
-import Footer from "./Footer";
 import Result from "./Result";
 
 const Wrapper = styled(animated.div)`
   transform-origin: 50% 100%;
   font-weight: 100;
+`;
+
+const StyledCard = styled(Card)`
+  border: 3px solid #033579;
+  border-radius: 2.5rem;
+  border-style: double;
 `;
 
 const origin: number = -90;
@@ -36,11 +41,10 @@ export default function App() {
   });
 
   return (
-    <Card style={{ width: "18rem" }} className="border-0 rounded-0 py-5 px-4">
+    <StyledCard style={{ width: "18rem" }} className="px-2 py-5 m-2">
       <Card.Body>
         <Result score={score} />
-        <Footer />
       </Card.Body>
-    </Card>
+    </StyledCard>
   );
 }

@@ -55,11 +55,12 @@ setInterval(function () {
 
       const { min, max } = col;
 
+      // map normalized color vals to rgb range: 0-255
       let outR = Math.round(map(c, 0, 1, min.r, max.r));
       let outG = Math.round(map(c, 0, 1, min.g, max.g));
       let outB = Math.round(map(c, 0, 1, min.b, max.b));
 
-      // make sure val falls into sensehats range
+      // sensehat doesnt display colors under val of 8
       if (outR < 8) outR = 8;
       if (outG < 8) outG = 8;
       if (outB < 8) outB = 8;
