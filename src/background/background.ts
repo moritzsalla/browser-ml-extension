@@ -47,15 +47,28 @@ chrome.storage.onChanged.addListener(function (namespace) {
 // create animation loop to animate sensehat
 setInterval(function () {
   chrome.storage.local.get(["score"], (result) => {
-    if (result.score.constructor === Array) {
-      let val = result.score[result.score.length - 1];
+    let history = 10;
 
+    if (result.score.constructor === Array && result.score.length > history) {
+      // calculate avg from last 10 entries
+      let val = 0;
+
+      for (let i = 1; i <= history; i++) {
+        val += result.score[result.score.length - i];
+        console.log(
+          "value " + i + ": " + result.score[result.score.length - i]
+        );
+      }
+      val /= history;
+
+      console.log("average: " + val);
+
+      // easing
       let dist = val - c;
       c += dist * easing;
 
-      const { min, max } = col;
-
       // map normalized color vals to rgb range: 0-255
+      const { min, max } = col;
       let outR = Math.round(map(c, 0, 1, min.r, max.r));
       let outG = Math.round(map(c, 0, 1, min.g, max.g));
       let outB = Math.round(map(c, 0, 1, min.b, max.b));
@@ -67,7 +80,7 @@ setInterval(function () {
 
       // send to sensehat only when vals update
       if (oldOutR !== outR && oldOutG !== outG && oldOutB !== outB) {
-        console.log(outR, outG, outB);
+        // console.log(outR, outG, outB);
         Sense.setColor(outR, outG, outB);
       }
 
